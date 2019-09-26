@@ -1,0 +1,179 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (182.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (96.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDepartments (20190917122909)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "departments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190917122909"]]
+  [1m[35m (115.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSections (20190917124004)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "sections" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190917124004"]]
+  [1m[35m (96.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDepartmentToSection (20190917124601)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "sections" ADD "department_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190917124601"]]
+  [1m[35m (85.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateStudents (20190917131159)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "students" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "roll_no" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190917131159"]]
+  [1m[35m (111.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddSectionToStudent (20190917131623)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "students" ADD "section_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190917131623"]]
+  [1m[35m (98.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDepartmentToStudent (20190917152113)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "students" ADD "department_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190917152113"]]
+  [1m[35m (91.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2019-09-26 14:32:10.103680"], ["updated_at", "2019-09-26 14:32:10.103680"]]
+  [1m[35m (90.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (1.2ms)[0m  [1m[31mDELETE FROM "departments"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "sections"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "students"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2019-09-26 14:32:35.708713', '2019-09-26 14:32:35.708713', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2019-09-26 14:32:35.708713', '2019-09-26 14:32:35.708713', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2019-09-26 14:32:35.710929', '2019-09-26 14:32:35.710929', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2019-09-26 14:32:35.710929', '2019-09-26 14:32:35.710929', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "roll_no", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 1, '2019-09-26 14:32:35.712609', '2019-09-26 14:32:35.712609', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "roll_no", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 1, '2019-09-26 14:32:35.712609', '2019-09-26 14:32:35.712609', 298486374)[0m
+  [1m[35m (119.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------------------
+SectionTest: test_Should_create_a_new_section_with_name
+-------------------------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDepartment Create (1.6ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "EEE"], ["created_at", "2019-09-26 14:32:35.863285"], ["updated_at", "2019-09-26 14:32:35.863285"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Create (0.2ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "department_id") VALUES (?, ?, ?, ?)[0m  [["name", "A"], ["created_at", "2019-09-26 14:32:35.883079"], ["updated_at", "2019-09-26 14:32:35.883079"], ["department_id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (5.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------
+SectionTest: test_Should_define_section_model
+---------------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------
+SectionTest: test_Deleting_a_department_should_delete_all_sections
+------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDepartment Create (1.3ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "MECH"], ["created_at", "2019-09-26 14:32:35.892937"], ["updated_at", "2019-09-26 14:32:35.892937"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Create (0.1ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "department_id") VALUES (?, ?, ?, ?)[0m  [["name", "A"], ["created_at", "2019-09-26 14:32:35.895887"], ["updated_at", "2019-09-26 14:32:35.895887"], ["department_id", 980190963]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Load (0.2ms)[0m  [1m[34mSELECT "sections".* FROM "sections" WHERE "sections"."department_id" = ?[0m  [["department_id", 980190963]]
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."section_id" = ?[0m  [["section_id", 980190963]]
+  [1m[36mSection Destroy (0.1ms)[0m  [1m[31mDELETE FROM "sections" WHERE "sections"."id" = ?[0m  [["id", 980190963]]
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "sections" ON "students"."section_id" = "sections"."id" WHERE "sections"."department_id" = ?[0m  [["department_id", 980190963]]
+  [1m[36mDepartment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "departments" WHERE "departments"."id" = ?[0m  [["id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mSection Load (0.1ms)[0m  [1m[34mSELECT  "sections".* FROM "sections" WHERE "sections"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[35m (5.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------
+DepartmentTest: test_Should_define_Department_model
+---------------------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------------------------
+DepartmentTest: test_Should_create_a_new_department_with_name
+-------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDepartment Create (1.4ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "EEE"], ["created_at", "2019-09-26 14:32:35.976404"], ["updated_at", "2019-09-26 14:32:35.976404"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (5.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------------------
+StudentTest: test_Deleting_a_section_should_delete_all_students
+---------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDepartment Create (1.5ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "MECH"], ["created_at", "2019-09-26 14:32:35.987002"], ["updated_at", "2019-09-26 14:32:35.987002"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Create (0.2ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "department_id") VALUES (?, ?, ?, ?)[0m  [["name", "A"], ["created_at", "2019-09-26 14:32:35.990062"], ["updated_at", "2019-09-26 14:32:35.990062"], ["department_id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Create (0.3ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "roll_no", "created_at", "updated_at", "section_id", "department_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "A"], ["email", "asd@email.com"], ["roll_no", 1], ["created_at", "2019-09-26 14:32:35.998731"], ["updated_at", "2019-09-26 14:32:35.998731"], ["section_id", 980190963], ["department_id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."section_id" = ?[0m  [["section_id", 980190963]]
+  [1m[36mStudent Destroy (0.1ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = ?[0m  [["id", 980190963]]
+  [1m[36mSection Destroy (0.1ms)[0m  [1m[31mDELETE FROM "sections" WHERE "sections"."id" = ?[0m  [["id", 980190963]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[35m (5.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------
+StudentTest: test_Should_define_roll_no
+---------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------
+StudentTest: test_Should_define_student_model
+---------------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------
+StudentTest: test_Should_define_email
+-------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+StudentTest: test_Should_define_name
+------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------------------
+StudentTest: test_Should_create_a_student_and_persist
+-----------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDepartment Create (1.4ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "MECH"], ["created_at", "2019-09-26 14:32:36.015157"], ["updated_at", "2019-09-26 14:32:36.015157"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Create (0.2ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "department_id") VALUES (?, ?, ?, ?)[0m  [["name", "A"], ["created_at", "2019-09-26 14:32:36.018201"], ["updated_at", "2019-09-26 14:32:36.018201"], ["department_id", 980190963]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Create (0.2ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "roll_no", "created_at", "updated_at", "section_id", "department_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "A"], ["email", "asd@email.com"], ["roll_no", 1], ["created_at", "2019-09-26 14:32:36.019834"], ["updated_at", "2019-09-26 14:32:36.019834"], ["section_id", 980190963], ["department_id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (5.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------
+StudentTest: test_Deleting_a_department_should_delete_all_students
+------------------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDepartment Create (1.4ms)[0m  [1m[32mINSERT INTO "departments" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "MECH"], ["created_at", "2019-09-26 14:32:36.028522"], ["updated_at", "2019-09-26 14:32:36.028522"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Create (0.2ms)[0m  [1m[32mINSERT INTO "sections" ("name", "created_at", "updated_at", "department_id") VALUES (?, ?, ?, ?)[0m  [["name", "A"], ["created_at", "2019-09-26 14:32:36.031468"], ["updated_at", "2019-09-26 14:32:36.031468"], ["department_id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mStudent Create (0.2ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "roll_no", "created_at", "updated_at", "section_id", "department_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "A"], ["email", "asd@email.com"], ["roll_no", 1], ["created_at", "2019-09-26 14:32:36.033255"], ["updated_at", "2019-09-26 14:32:36.033255"], ["section_id", 980190963], ["department_id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSection Load (0.1ms)[0m  [1m[34mSELECT "sections".* FROM "sections" WHERE "sections"."department_id" = ?[0m  [["department_id", 980190963]]
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."section_id" = ?[0m  [["section_id", 980190963]]
+  [1m[36mStudent Destroy (0.1ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = ?[0m  [["id", 980190963]]
+  [1m[36mSection Destroy (0.1ms)[0m  [1m[31mDELETE FROM "sections" WHERE "sections"."id" = ?[0m  [["id", 980190963]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "sections" ON "students"."section_id" = "sections"."id" WHERE "sections"."department_id" = ?[0m  [["department_id", 980190963]]
+  [1m[36mDepartment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "departments" WHERE "departments"."id" = ?[0m  [["id", 980190963]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[35m (5.4ms)[0m  [1m[31mrollback transaction[0m
