@@ -1,9 +1,0 @@
-<%= form_for(@comment) do |f| %>
-  <div class="form-group">
-    <label style="color:white;">Comment</label>
-    <%= f.text_area :content, :cols => 40, :rows => 2, class: "form-control", placeholder: "New Comment", required: true%>
-    <%= f.hidden_field :blog_post_id, value: params[:blog_post_id] %>
-    <br/>
-    <%= f.submit "Add", text: "Add", class: "btn btn-danger" %>
-  </div>
-<% end %>
