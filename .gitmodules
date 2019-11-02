@@ -1,0 +1,3 @@
+[submodule "BloggersBlogs/BloggersBlogs/blogger_blogs"]
+	path = BloggersBlogs/BloggersBlogs/blogger_blogs
+	url = https://github.com/rayvalesh/saas-201-TirumalasettyRayvalesh
