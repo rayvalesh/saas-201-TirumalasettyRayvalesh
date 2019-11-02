@@ -1,0 +1,13 @@
+<h2>Write Your New Post</h2>
+
+<%= form_for(@blog_post) do |f| %>
+  <div class="form-group">
+    <label>Ttile</label>
+    <%= f.text_field :title, :autocomplete => "off", class: "form-control", placeholder: "Post Ttile", required: true%>
+    <br/>
+    <label>Content</label>
+    <%= f.text_area :content, :cols => 50, :rows => 10, class: "form-control", placeholder: "Post Content", required: true%>
+    <br/>
+    <%= f.submit "Update", text: "Post", class: "btn btn-primary" %>
+  </div>
+<% end %>
